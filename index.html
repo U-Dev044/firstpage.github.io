@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Color Mixer</title>
+    <style>
+      /* CSS styles here */
+      /* Reset styles */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Body styles */
+      body {
+        font-family: cursive;
+        font-size: 15px;
+        text-shadow: 5px 5px 5px #494848;
+        line-height: 1.5;
+        background-color: rgb(0, 0, 0);
+        color: #faf4f4;
+      }
+
+      /* Color mixer styles */
+      .color-mixer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 40px;
+        background-color: #b69d9da8;
+        box-shadow: 10px 20px 10px rgba(34, 34, 34, 0.1);
+        border-radius: 80px;
+      }
+
+      /* Slider container styles */
+      .slider-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        width: 100%;
+      }
+
+      .slider-container label {
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .slider-container input[type="range"] {
+        flex: 1;
+        margin-left: 20px;
+        -webkit-appearance: none;
+        width: 100%;
+        height: 6px;
+        background-color: #ddd;
+        border-radius: 10px;
+        outline: none;
+      }
+
+      .slider-container input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        background-color: #fff;
+        border-radius: 50%;
+        border: 1px solid #ccc;
+        cursor: pointer;
+      }
+
+      /* Input field styles */
+      .slider-container input[type="number"] {
+        width: 60px;
+        margin-left: 20px;
+        padding: 4px 8px;
+        font-size: 16px;
+        text-align: center;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+        outline: none;
+      }
+      h1 {
+        font-family: "Courier New", Courier, monospace;
+      }
+
+      /* Color display styles */
+      .color-display {
+        width: 200px;
+        height: 100px;
+        margin-top: 40px;
+        background-color: rgb(0, 0, 0);
+        border-radius: 4px;
+      }
+      .display {
+        width: 100%;
+        height: 100vh;
+        background-color: rgb(0, 0, 0);
+      }
+
+      /* ... */
+    </style>
+  </head>
+  <body>
+    <div class="display">
+      <div class="color-mixer">
+        <h1 .>
+          <b>
+            MY COLOR MIXER <br />
+
+            <span style="text-align: center"></span>
+          </b>
+        </h1>
+        <div class="slider-container">
+          <label for="red">Red:</label>
+          <input type="range" id="red" name="red" min="0" max="255" value="0" />
+          <input
+            type="number"
+            id="red-input"
+            name="red-input"
+            min="0"
+            max="255"
+            value="0"
+            step="1"
+          />
+        </div>
+        <div class="slider-container">
+          <label for="green">Green:</label>
+          <input
+            type="range"
+            id="green"
+            name="green"
+            min="0"
+            max="255"
+            value="0"
+          />
+          <input
+            type="number"
+            id="green-input"
+            name="green-input"
+            min="0"
+            max="255"
+            value="0"
+            step="1"
+          />
+        </div>
+        <div class="slider-container">
+          <label for="blue">Blue:</label>
+          <input
+            type="range"
+            id="blue"
+            name="blue"
+            min="0"
+            max="255"
+            value="0"
+          />
+          <input
+            type="number"
+            id="blue-input"
+            name="blue-input"
+            min="0"
+            max="255"
+            value="0"
+            step="1"
+          />
+        </div>
+        <div class="color-display"></div>
+      </div>
+    </div>
+    <script>
+      // JavaScript code here
+      const redInput = document.getElementById("red");
+      const greenInput = document.getElementById("green");
+      const blueInput = document.getElementById("blue");
+      const redInputValue = document.getElementById("red-input");
+      const greenInputValue = document.getElementById("green-input");
+      const blueInputValue = document.getElementById("blue-input");
+      const colorDisplay = document.querySelector(".color-display");
+      const colorDisplays = document.querySelector(".display");
+
+      function updateColorPreview() {
+        const red = parseInt(redInput.value);
+        const green = parseInt(greenInput.value);
+        const blue = parseInt(blueInput.value);
+        const color = `rgb(${red},${green},${blue})`;
+        colorDisplay.style.backgroundColor = color;
+        colorDisplays.style.backgroundColor = color;
+        redInputValue.value = red;
+        greenInputValue.value = green;
+        blueInputValue.value = blue;
+      }
+
+      redInput.addEventListener("input", updateColorPreview);
+      greenInput.addEventListener("input", updateColorPreview);
+      blueInput.addEventListener("input", updateColorPreview);
+
+      redInputValue.addEventListener("input", () => {
+        redInput.value = redInputValue.value;
+        updateColorPreview();
+      });
+      greenInputValue.addEventListener("input", () => {
+        greenInput.value = greenInputValue.value;
+        updateColorPreview();
+      });
+      blueInputValue.addEventListener("input", () => {
+        blueInput.value = blueInputValue.value;
+        updateColorPreview();
+      });
+    </script>
+  </body>
+</html>
